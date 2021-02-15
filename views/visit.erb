@@ -18,9 +18,9 @@
   <div>  
     <label>Выберите парикмахера</label>
     <select name="barbers" class="form-control ccc">
-      <option value="Walter White">1.Walter White</option>
-      <option value="Jessie Pinkman">2.Jessie Pinkman</option>
-      <option value="Gus Fring">3.Gus Fring</option>
+      <option <%= @walter == 'Walter White' ? 'selected' : '' %> value="Walter White">1.Walter White</option>
+      <option <%= @walter == 'Jessie Pinkman' ? 'selected' : '' %> value="Jessie Pinkman">2.Jessie Pinkman</option>
+      <option <%= @walter == 'Gus Fring' ? 'selected' : '' %> value="Gus Fring">3.Gus Fring</option>
     </select></div><br/>
     <div class="form-group">
     <label>Какой цвет краски вы хотите</label>
