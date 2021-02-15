@@ -2,10 +2,12 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
-
+def get_db 
+	SQLite3::Database.new 'barbershop.db'
+end
 configure do
-	@db = SQLite3::Database.new 'barbershop.db'
-	@db.execute 'CREATE TABLE Users (
+	db = get_db
+	db.execute 'CREATE TABLE IF NOT EXISTS Users (
     Id        INTEGER PRIMARY KEY AUTOINCREMENT,
     Name      VARCHAR,
     Phone     VARCHAR,
@@ -64,6 +66,10 @@ post '/visit' do
   			return erb :visit
 		end
 	end
+	db = get_db
+	db.execute 'insert into
+	 Users 
+	 (Name, Phone, DateStamp, Barber, Color) values (?, ?, ?, ?, ?)', [@user_name, @phone, @date_time, @walter, @color]
 =begin	
 #Еще короче способ есть 
 @error = hh.select {|key,_| params[key] == ""}.values.join(", ")
