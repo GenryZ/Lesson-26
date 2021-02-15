@@ -1,0 +1,61 @@
+<h3>Регистрация</h3>
+<p>Если есть желание записаться, то сделать это можно здесь!</p>
+
+<form action="/visit" method="POST" role="form">
+ 
+  <div class="form-group">
+    <label>Ваше имя</label>
+    <input id="ccc" name="username" type="text" class="form-control" placeholder="Ваше имя" value="<%= @user_name %>">
+  </div>
+<div class="form-group">
+    <label>Ваш телефон</label>
+    <input id="bbb" name="phone" type="text" class="form-control" placeholder="Ваш телефон" value="<%= @phone %>">
+  </div>
+  <div class="form-group">
+    <label>Ваше время</label>
+    <input id="aaa" name="datetime" type="text" class="form-control" placeholder="Введите дату и время" value="<%= @date_time %>">
+  </div> 
+  <div>  
+    <label>Выберите парикмахера</label>
+    <select name="barbers" class="form-control ccc">
+      <option value="Walter White">1.Walter White</option>
+      <option value="Jessie Pinkman">2.Jessie Pinkman</option>
+      <option value="Gus Fring">3.Gus Fring</option>
+    </select></div><br/>
+    <div class="form-group">
+    <label>Какой цвет краски вы хотите</label>
+      	<select id="color" name="color">
+  		<option value="#7bd148">Green</option>
+  		<option value="#5484ed">Bold blue</option>
+  		<option value="#a4bdfc">Blue</option>
+  		<option value="#46d6db">Turquoise</option>
+  		<option value="#7ae7bf">Light green</option>
+  		<option value="#51b749">Bold green</option>
+  		<option value="#fbd75b">Yellow</option>
+  		<option value="#ffb878">Orange</option>
+  		<option value="#ff887c">Red</option>
+  		<option value="#dc2127">Bold red</option>
+  		<option value="#dbadff">Purple</option>
+  		<option value="#e1e1e1">Gray</option>
+	</select>
+  </div> 
+  
+  
+    <button type="submit" class="btn btn-primary">OK</button>
+</form>
+
+<script type="text/javascript">
+  $(function() {
+    
+    // тут можно написать любой javascript код, который исполнится
+    // после загрузки страницы
+
+  $('#color').simplecolorpicker();
+  $('#aaa').css('background-color','yellow');
+  $('#bbb').css('background-color','lightblue');
+  $('#ccc').css('background-color','red');
+  $('.ccc').css('background-color','green');
+
+  });
+  
+</script>

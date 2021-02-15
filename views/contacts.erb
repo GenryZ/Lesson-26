@@ -1,0 +1,11 @@
+<h1>Contacts</h1>
+
+<form action="/contacts" method="POST" role="form">
+  <div class="mb-3">
+    <label>Write us.</label><br/>
+    <input name="email" type="email" placeholder="Enter email" value="<%= @email %>">
+   
+  </div><br/>
+  <textarea name="messages" type="text" value="<%= @messages %>"></textarea><br/>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
