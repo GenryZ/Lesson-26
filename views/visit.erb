@@ -13,7 +13,7 @@
   </div>
   <div class="form-group">
     <label>Ваше время</label>
-    <input id="aaa" name="datetime" type="text" class="form-control" placeholder="Введите дату и время" value="<%= @date_time %>">
+    <input id="datetimepicker" name="datetime" type="text" class="form-control" placeholder="Введите дату и время" value="<%= @date_time %>">
   </div> 
   <div>  
     <label>Выберите парикмахера</label>
@@ -49,7 +49,7 @@
     
     // тут можно написать любой javascript код, который исполнится
     // после загрузки страницы
-
+    $('#datetimepicker').datetimepicker();
   $('#color').simplecolorpicker();
   $('#aaa').css('background-color','yellow');
   $('#bbb').css('background-color','lightblue');
