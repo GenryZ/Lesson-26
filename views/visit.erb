@@ -18,10 +18,13 @@
   <div>  
     <label>Выберите парикмахера</label>
     <select name="barbers" class="form-control ccc">
-      <option <%= @walter == 'Walter White' ? 'selected' : '' %> value="Walter White">1.Walter White</option>
-      <option <%= @walter == 'Jessie Pinkman' ? 'selected' : '' %> value="Jessie Pinkman">2.Jessie Pinkman</option>
-      <option <%= @walter == 'Gus Fring' ? 'selected' : '' %> value="Gus Fring">3.Gus Fring</option>
-    </select></div><br/>
+       <% @barberito.each do |item| %>
+      <option <%= @walter == item['name'] ? 'selected' : ''%>><%= item['name'] %></option>
+      <% end %>
+
+
+    </select>
+  </div><br/>
     <div class="form-group">
     <label>Какой цвет краски вы хотите</label>
       	<select id="color" name="color">

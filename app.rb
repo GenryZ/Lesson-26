@@ -6,29 +6,34 @@ require 'sqlite3'
 
 configure do  #create a new tables for db = database
 	db = get_db
-	db.execute 'CREATE TABLE IF NOT EXISTS Users (
-    Id        INTEGER PRIMARY KEY AUTOINCREMENT,
-    Name      VARCHAR,
-    Phone     VARCHAR,
-    DateStamp VARCHAR,
-    Barber    VARCHAR,
-    Color     VARCHAR
+	db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
+    "Id"        INTEGER PRIMARY KEY AUTOINCREMENT,
+    "Name"      VARCHAR,
+    "Phone"     VARCHAR,
+    "DateStamp" VARCHAR,
+    "Barber"    VARCHAR,
+    "Color"     VARCHAR
 )'
 
-db.execute 'CREATE TABLE IF NOT EXISTS Barber (
-	Id 	INTEGER PRIMARY KEY AUTOINCREMENT,
-	Barber TEXT
+db.execute 'CREATE TABLE IF NOT EXISTS "Barbers" (
+	"id" 	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"name" TEXT
 
 
 )'
-def is_barber_exists? db, barber #function name hold ? cos is return boolean true or false
-	db.execute('select * from Barber where Barber=?',[barber]).length > 0 # return true or false
+before do
+	db = get_db
+	@barberito = db.execute 'select * from Barbers' #new variable for all views
+end
+
+def is_barber_exists? db, name #function name hold ? cos is return boolean true or false
+	db.execute('select * from Barbers where name=?',[name]).length > 0 # return true or false
 end
 def seed_db db, barbers #seed meens napolnit'
 
 	barbers.each do |barber|
 		if !is_barber_exists? db, barber
-			db.execute 'insert into Barber (Barber) values (?)', [barber]
+			db.execute 'insert into Barbers (name) values (?)', [barber]
 	end
 end
 end
@@ -94,7 +99,7 @@ post '/visit' do
 	 (Name, Phone, DateStamp, Barber, Color) values (?, ?, ?, ?, ?)', [@user_name, @phone, @date_time, @walter, @color]
 
 	
-	db.execute 'insert into Barber (Barber) values (?)', [@walter]
+	db.execute 'insert into Barbers (name) values (?)', [@walter]
 	
 =begin	
 #Еще короче способ есть 
