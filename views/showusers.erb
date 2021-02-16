@@ -1,6 +1,13 @@
-<%= @show %>
+<%#= @show %>
 
 <table class="table table-sm">
+		<tr id='sss'>
+			<td>Name</td>
+			<td>Phone</td>
+			<td>Date</td>
+			<td>Barber</td>
+			<td>Color</td>
+		</tr>
 	<% @show.each do |row| %>
 		<tr>
 			<td><%= row['Name'] %></td>
@@ -11,3 +18,15 @@
 		</tr>
     <% end %>
 </table>
+<script type="text/javascript">
+  $(function() {
+    
+    // тут можно написать любой javascript код, который исполнится
+    // после загрузки страницы
+  
+  $('#sss').css('bald');
+ 
+
+  });
+  
+</script>
