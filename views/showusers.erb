@@ -1,32 +1,25 @@
 <%#= @show %>
 
-<table class="table table-sm">
-		<tr id='sss'>
-			<td>Name</td>
-			<td>Phone</td>
-			<td>Date</td>
-			<td>Barber</td>
-			<td>Color</td>
-		</tr>
-	<% @show.each do |row| %>
+<table class="table table-bordered border-primary">
+	<thead>
 		<tr>
-			<td><%= row['Name'] %></td>
-			<td><%= row['Phone'] %></td>
-			<td><%= row['DateStamp'] %></td>
-			<td><%= row['Barber'] %></td>
-			<td><%= row['Color'] %></td>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Date</th>
+			<th>Barber</th>
+			<th>Color</th>
 		</tr>
-    <% end %>
+	</thead>
+	<body>
+	<% @show.each do |row| %>
+			<tr>
+				<td><%= row['Name'] %></td>
+				<td><%= row['Phone'] %></td>
+				<td><%= row['DateStamp'] %></td>
+				<td><%= row['Barber'] %></td>
+				<td><%= row['Color'] %></td>
+			</tr>
+    	<% end %>
+	</body>
 </table>
-<script type="text/javascript">
-  $(function() {
-    
-    // тут можно написать любой javascript код, который исполнится
-    // после загрузки страницы
-  
-  $('#sss').css('bald');
- 
 
-  });
-  
-</script>
