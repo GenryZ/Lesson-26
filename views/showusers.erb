@@ -1,0 +1,13 @@
+<%= @show %>
+
+<table class="table table-sm">
+	<% @show.each do |row| %>
+		<tr>
+			<td><%= row['Name'] %></td>
+			<td><%= row['Phone'] %></td>
+			<td><%= row['DateStamp'] %></td>
+			<td><%= row['Barber'] %></td>
+			<td><%= row['Color'] %></td>
+		</tr>
+    <% end %>
+</table>
