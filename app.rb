@@ -3,13 +3,24 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
+def is_barber_exists? db, name #function name hold ? cos is return boolean true or false
+	db.execute('select * from Barber where Barber=?',[name]).length > 0 # return true or false
+end
+def seed_db db, barbers #seed meens napolnit'
+
+	barbers.each do |barber|
+		if !is_barber_exists? db, barber
+			db.execute 'insert into Barber (Barber) values (?)', [barber]
+	end
+end
+end
 def get_db 
 	db = SQLite3::Database.new 'barbershop.db'
 	db.results_as_hash = true
 	return db
 end
 
-configure do
+configure do  #create a new tables for db = database
 	db = get_db
 	db.execute 'CREATE TABLE IF NOT EXISTS Users (
     Id        INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,6 +32,14 @@ configure do
 );
 '
 
+db.execute 'CREATE TABLE IF NOT EXISTS Barber (
+	Id 	INTEGER PRIMARY KEY AUTOINCREMENT,
+	Barber VARCHAR
+
+
+);'
+
+seed_db db, ['Jessie Pinkman', 'Walter White', 'Gus Fring', 'Mike Ehrmantraut']
 end
 
 
@@ -74,6 +93,10 @@ post '/visit' do
 	db.execute 'insert into
 	 Users 
 	 (Name, Phone, DateStamp, Barber, Color) values (?, ?, ?, ?, ?)', [@user_name, @phone, @date_time, @walter, @color]
+
+	
+	db.execute 'insert into Barber (Barber) values (?)', [@walter]
+	
 =begin	
 #Еще короче способ есть 
 @error = hh.select {|key,_| params[key] == ""}.values.join(", ")

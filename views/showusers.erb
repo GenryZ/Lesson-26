@@ -10,7 +10,7 @@
 			<th>Color</th>
 		</tr>
 	</thead>
-	<body>
+	<tbody>
 	<% @show.each do |row| %>
 			<tr>
 				<td><%= row['Name'] %></td>
@@ -20,6 +20,6 @@
 				<td><%= row['Color'] %></td>
 			</tr>
     	<% end %>
-	</body>
+	</tbody>
 </table>
 
