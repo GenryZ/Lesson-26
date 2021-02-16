@@ -3,8 +3,26 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
-def is_barber_exists? db, name #function name hold ? cos is return boolean true or false
-	db.execute('select * from Barber where Barber=?',[name]).length > 0 # return true or false
+
+configure do  #create a new tables for db = database
+	db = get_db
+	db.execute 'CREATE TABLE IF NOT EXISTS Users (
+    Id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name      VARCHAR,
+    Phone     VARCHAR,
+    DateStamp VARCHAR,
+    Barber    VARCHAR,
+    Color     VARCHAR
+)'
+
+db.execute 'CREATE TABLE IF NOT EXISTS Barber (
+	Id 	INTEGER PRIMARY KEY AUTOINCREMENT,
+	Barber TEXT
+
+
+)'
+def is_barber_exists? db, barber #function name hold ? cos is return boolean true or false
+	db.execute('select * from Barber where Barber=?',[barber]).length > 0 # return true or false
 end
 def seed_db db, barbers #seed meens napolnit'
 
@@ -19,25 +37,6 @@ def get_db
 	db.results_as_hash = true
 	return db
 end
-
-configure do  #create a new tables for db = database
-	db = get_db
-	db.execute 'CREATE TABLE IF NOT EXISTS Users (
-    Id        INTEGER PRIMARY KEY AUTOINCREMENT,
-    Name      VARCHAR,
-    Phone     VARCHAR,
-    DateStamp VARCHAR,
-    Barber    VARCHAR,
-    Color     VARCHAR
-);
-'
-
-db.execute 'CREATE TABLE IF NOT EXISTS Barber (
-	Id 	INTEGER PRIMARY KEY AUTOINCREMENT,
-	Barber VARCHAR
-
-
-);'
 
 seed_db db, ['Jessie Pinkman', 'Walter White', 'Gus Fring', 'Mike Ehrmantraut']
 end
